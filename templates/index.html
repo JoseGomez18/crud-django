@@ -3,6 +3,66 @@
 {% block tittle %}Home{% endblock  %}
 
 {% block content %}
-{% include "fragments/menu.html" %}
-<h1>Home</h1>
+<div class="contenedor_padre">
+    <div class="nav">
+        <h1>PersonalMoney</h1>
+        <div class="cuenta">
+            <img src="icono" alt="">
+            <div class="correo">
+                <h3>Santiago Madrid</h3>
+                <p>Santiagomadrid202...</p>
+            </div>
+            <img src="flecha" alt="">
+        </div>        
+    </div>
+
+    <div class="nav_gastos">
+        <div class="part1">
+            <input type="text" name="" id="" placeholder="Nombre">
+            <select name="select">
+                <option value="value1" selected>Categorias</option>
+                <option value="value2">Value 2</option>
+                <option value="value3">Value 3</option>
+              </select>
+        </div>
+        <div class="part2">
+            <button>Gasto</button>
+        </div>
+    </div>
+
+    <div class="total">
+      <h3>1 total</h3>
+      <p>$ 23.000,00</p>
+  </div>
+    <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Valor</th>
+            <th>Nombre del Gasto</th>
+            <th>Categoría</th>
+            <th>Actualizar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2024-03-13</td>
+            <td>$50.00</td>
+            <td>Comida</td>
+            <td>Alimentos</td>
+            <td><button onclick="actualizarRegistro(this)">Actualizar</button></td>
+            <td><button onclick="eliminarRegistro(this)">Eliminar</button></td>
+          </tr> <tr>
+            <td>2024-03-13</td>
+            <td>$50.00</td>
+            <td>Comida</td>
+            <td>Alimentos</td>
+            <td><button onclick="actualizarRegistro(this)">Actualizar</button></td>
+            <td><button onclick="eliminarRegistro(this)">Eliminar</button></td>
+          </tr>
+          <!-- Puedes agregar más filas aquí con otros registros -->
+        </tbody>
+      </table>
+</div>
 {% endblock  %}
