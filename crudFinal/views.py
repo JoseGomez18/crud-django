@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
-def index(request):
-    return render(request,"index.html",{})
+def barra(request):
+    return render(request,"barra.html",{})
 
