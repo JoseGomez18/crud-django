@@ -1,3 +1,5 @@
+
+
 {% extends "layouts/base.html" %}
 
 {% block tittle %}Home{% endblock  %}
@@ -5,6 +7,18 @@
 {% block content %}
 {% include "fragments/agregar.html" %}
 {% include "fragments/menu.html" %}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("toggleBtnGasto").addEventListener("click", function() {
+          let agregarFragment = document.getElementById("agregarFragment");
+          if (agregarFragment.style.display === "none") {
+              agregarFragment.style.display = "flex";
+          } else {
+              agregarFragment.style.display = "none";
+          }
+      });
+  });
+</script>
 <div class="contenedor_padre">
     <div class="nav">
         <h1>PersonalMoney</h1>
@@ -28,7 +42,7 @@
               </select>
         </div>
         <div class="part2">
-            <button>Gasto</button>
+            <button id="toggleBtnGasto">Gasto</button>
         </div>
     </div>
 

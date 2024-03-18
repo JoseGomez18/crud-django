@@ -50,6 +50,7 @@ select {
     background: #2dd1ac;
     color: white;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .nav_gastos .part1 {

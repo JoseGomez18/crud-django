@@ -1,13 +1,31 @@
-<div class="contenedor-padre2">
-    <div class="contenedor-agregar">
+{% comment %} <div class="contenedor-padre2"> {% endcomment %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("cerrar").addEventListener("click", function() {
+                let agregarFragment = document.getElementById("agregarFragment");
+                if (agregarFragment.style.display === "flex") {
+                    agregarFragment.style.display = "none";
+                }
+            });
+
+            document.getElementById("cerrar2").addEventListener("click", function() {
+                let agregarFragment = document.getElementById("agregarFragment");
+                if (agregarFragment.style.display === "flex") {
+                    agregarFragment.style.display = "none";
+                }
+            });
+        });
+      </script>
+    <div class="contenedor-agregar" id="agregarFragment">
         <div class="contenedor-titulo">
             <h1 class="titulo-gasto">Añadir gasto</h1>
-            <button class="boton-cerrar">X</button>
+            <button class="boton-cerrar" id="cerrar">X</button>
         </div>
         <div class="contenedor-precio">
             <div class= "contenedor-titulo-precio">
-                <h1 class="titulo-valor">valor</h1>
-                <h1 class="titulo-precio">$ 0,00</h1>
+                <label class="titulo-valor">valor</label>
+                <p>$</p>
+                <input class="titulo-precio" type="number" min="0" step="0.01" value="0.00">
             </div>
         </div>
         <div class="contenedor-precio2">
@@ -30,7 +48,7 @@
             <textarea id="w3review" name="w3review" rows="4" cols="50" placeholder="Descripcion del gasto"></textarea>
         </div>
         <div class="contenedor-botones-final">
-            <button class="botones-cancelar">cancelar</button>
+            <button class="botones-cancelar" id="cerrar2">cancelar</button>
             <button class="botones-añadir-gasto">añadir gasto</button>
         </div>
     </div>
