@@ -1,0 +1,195 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.contenedor-padre2{
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    background-color: gray;
+}
+
+.contenedor-agregar{
+    background-color: #444e5e;
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-titulo{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.titulo-gasto{
+    font-size: 14px;
+    font-weight: 500;
+    color: #363f4d;
+}
+
+.boton-cerrar{
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    border: none;
+}
+
+.contenedor-precio{
+    width: 400px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.contenedor-precio2 input{
+    border: none;
+    background-color: #444e5e;
+    color:#ffffff;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.contenedor-precio2 select{
+    border: none;
+    width: 110px;
+    background-color: #444e5e;
+    color:#ffffff;
+    font-size: 16px;
+}
+
+.contenedor-titulo-precio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    
+}
+
+
+
+.titulo-valor{
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.titulo-precio{
+    font-size: 35px;
+    color:#ffffff
+}
+
+.contenedor-precio2{
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 100%;
+    justify-content: space-around;
+}
+
+.contenedor-precio2 h1{
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.informacion-precio{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    font-size: 0.75rem;
+    justify-content: flex-end;
+}
+
+.informacion-precio h1{
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.informacion-precio option{
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 1;
+}
+
+.contenedor-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    width: 400px;
+    height: 100%;
+    gap: 25px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.contenedor-info textarea{
+    width: 348px;
+    border-radius: 5px;
+    padding: 13px;
+}
+
+.titulo-info{
+    font-size: 17px;
+    color: rgb(83, 93, 110);
+    font-weight: 500;
+}
+
+.input-precio{
+    width: 350px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    color: gray;
+    padding: 13px;
+}
+
+
+.contenedor-botones-final{
+    width: 400px;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    padding-right: 15px;
+}
+
+.botones-cancelar{
+    height: 40px;
+    width: 85px;
+    font-size: 14px;
+    background-color: white;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    color: rgb(54, 63, 77);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.botones-añadir-gasto{
+    height: 40px;
+    width: 90px;
+    font-size: 14px;
+    border: 1px solid gray;
+    background-color: rgb(238, 238, 238);
+    border-radius: 8px;
+    color: rgb(187, 187, 187);
+    font-weight: 600;
+    cursor: pointer;
+}
