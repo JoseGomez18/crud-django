@@ -47,8 +47,8 @@
     </div>
 
     <div class="total">
-      <h3>1 total</h3>
-      <p>$ 23.000,00</p>
+      <h3>{{contador}} total</h3>
+      <p>{{total}}</p>
   </div>
     <table>
         <thead>
@@ -62,22 +62,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>2024-03-13</td>
-            <td>$50.00</td>
-            <td>Comida</td>
-            <td>Alimentos</td>
-            <td><button onclick="actualizarRegistro(this)">Actualizar</button></td>
-            <td><button onclick="eliminarRegistro(this)">Eliminar</button></td>
-          </tr> <tr>
-            <td>2024-03-13</td>
-            <td>$50.00</td>
-            <td>Comida</td>
-            <td>Alimentos</td>
-            <td><button onclick="actualizarRegistro(this)">Actualizar</button></td>
-            <td><button onclick="eliminarRegistro(this)">Eliminar</button></td>
-          </tr>
-          <!-- Puedes agregar más filas aquí con otros registros -->
+          {% for results in data %}
+            <tr>
+                    <td>{{ results.fecha}}</td>
+                    <td>{{ results.valor}}</td>
+                    <td>{{ results.nombre}}</td>
+                    <td>{{ results.categoria}}</td>
+            </tr>
+          {% endfor %}
         </tbody>
       </table>
 </div>

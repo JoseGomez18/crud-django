@@ -19,8 +19,9 @@ from django.urls import path
 from . import views
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.barra, name="barra")
+    path('', views.barra, name="barra"),
+    path('select/', views.select, name="select"),
+    path('insert/', views.insert, name="insert"),
 ]
