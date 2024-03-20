@@ -5,6 +5,7 @@
 {% block tittle %}Home{% endblock  %}
 
 {% block content %}
+
 {% include "fragments/agregar.html" %}
 {% include "fragments/menu.html" %}
 <script>
@@ -17,6 +18,22 @@
               agregarFragment.style.display = "none";
           }
       });
+
+      document.getElementById("categoria").addEventListener("change", function() {
+        let categoriaSeleccionada = this.value;
+        let filas = document.querySelectorAll("tbody tr");
+
+        filas.forEach(function(fila) {
+            let categoriaFila = fila.querySelector("td:nth-child(4)").textContent;
+            if (categoriaSeleccionada === "" || categoriaSeleccionada === categoriaFila) {
+                fila.style.display = "table-row";
+            } else {
+                fila.style.display = "none";
+            }
+        });
+    });
+
+
   });
 </script>
 <div class="contenedor_padre">
@@ -34,12 +51,13 @@
 
     <div class="nav_gastos">
         <div class="part1">
-            <input type="text" name="" id="" placeholder="Nombre">
-            <select name="select">
-                <option value="value1" selected>Categorias</option>
-                <option value="value2">Value 2</option>
-                <option value="value3">Value 3</option>
-              </select>
+            <select name="categoria" id="categoria">
+              <option value="">Todas las categorías</option>
+              <option value="Comida"> 🍔 Comida</option>
+              <option value="Transporte">🚗 Transporte</option>
+              <option value="Pasatiempo">🎭 Pasatiempo</option>
+              <option value="Casa">🏠 Casa</option>
+            </select>
         </div>
         <div class="part2">
             <button id="toggleBtnGasto">Gasto</button>
@@ -68,6 +86,12 @@
                     <td>{{ results.valor}}</td>
                     <td>{{ results.nombre}}</td>
                     <td>{{ results.categoria}}</td>
+                    <td><button >Actualizar</button></td>
+                    <form action="{% url 'delete' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value={{results.id}} name = "id">
+                      <td><input type="submit" value="Eliminar" ></td>
+                    </form>
             </tr>
           {% endfor %}
         </tbody>

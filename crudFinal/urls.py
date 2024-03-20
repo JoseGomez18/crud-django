@@ -24,4 +24,5 @@ urlpatterns = [
     path('', views.barra, name="barra"),
     path('select/', views.select, name="select"),
     path('insert/', views.insert, name="insert"),
+    path('delete/', views.delete, name="delete"),
 ]

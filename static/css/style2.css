@@ -37,8 +37,8 @@
 .nav_gastos input,
 select {
     height: 34px;
-    border: 1px solid #808080bd;
-    border-radius: 3px;
+    border: 1px solid #0a7f65;
+    border-radius: 6px;
     width: 163px;
 }
 
