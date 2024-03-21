@@ -73,3 +73,14 @@ td {
 th {
     color: #009688;
 }
+
+.btn_api {
+    border: none;
+    width: 72px;
+    height: 32px;
+    margin-right: 17px;
+    background: #2dd1ac;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}

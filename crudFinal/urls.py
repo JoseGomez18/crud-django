@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.barra, name="barra"),
     path('select/', views.select, name="select"),
+    path('actualizar_gasto/<int:gasto_id>/', views.actualizar_gasto, name='actualizar_gasto'),
     path('insert/', views.insert, name="insert"),
     path('delete/', views.delete, name="delete"),
 ]

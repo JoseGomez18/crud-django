@@ -7,7 +7,7 @@
 {% block content %}
 
 {% include "fragments/agregar.html" %}
-{% include "fragments/menu.html" %}
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
       document.getElementById("toggleBtnGasto").addEventListener("click", function() {
@@ -20,11 +20,13 @@
       });
 
       document.getElementById("categoria").addEventListener("change", function() {
-        let categoriaSeleccionada = this.value;
+        let categoriaSeleccionada = this.value.toLowerCase();
+        console.log("Categoría seleccionada:", categoriaSeleccionada);
         let filas = document.querySelectorAll("tbody tr");
 
         filas.forEach(function(fila) {
-            let categoriaFila = fila.querySelector("td:nth-child(4)").textContent;
+            let categoriaFila = fila.querySelector("td:nth-child(5)").textContent.toLowerCase();;
+            console.log("Categoría de la fila:", categoriaFila)
             if (categoriaSeleccionada === "" || categoriaSeleccionada === categoriaFila) {
                 fila.style.display = "table-row";
             } else {
@@ -53,10 +55,10 @@
         <div class="part1">
             <select name="categoria" id="categoria">
               <option value="">Todas las categorías</option>
-              <option value="Comida"> 🍔 Comida</option>
-              <option value="Transporte">🚗 Transporte</option>
-              <option value="Pasatiempo">🎭 Pasatiempo</option>
-              <option value="Casa">🏠 Casa</option>
+              <option value="comida">🍔 Comida</option>
+              <option value="transporte">🚗 Transporte</option>
+              <option value="pasatiempo">🎭 Pasatiempo</option>
+              <option value="casa">🏠 Casa</option>
             </select>
         </div>
         <div class="part2">
@@ -74,6 +76,7 @@
             <th>Fecha</th>
             <th>Valor</th>
             <th>Nombre del Gasto</th>
+            <th>Descripción</th>
             <th>Categoría</th>
             <th>Actualizar</th>
             <th>Eliminar</th>
@@ -85,12 +88,20 @@
                     <td>{{ results.fecha}}</td>
                     <td>{{ results.valor}}</td>
                     <td>{{ results.nombre}}</td>
+                    <td>{{ results.descripcion}}</td>
                     <td>{{ results.categoria}}</td>
-                    <td><button >Actualizar</button></td>
+                    
+
+                  <td>
+                    <form action="{% url 'actualizar_gasto' results.id %}" method="get">
+                        <button type="submit" class="btn_api">Actualizar</button>
+                    </form>
+                </td>
+
                     <form action="{% url 'delete' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" value={{results.id}} name = "id">
-                      <td><input type="submit" value="Eliminar" ></td>
+                      <td><input type="submit" class="btn_api" value="Eliminar" ></td>
                     </form>
             </tr>
           {% endfor %}

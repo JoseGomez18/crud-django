@@ -44,7 +44,7 @@ def insert(request):
         categoria = request.POST.get('categoria')
 
         # Crea un diccionario con los datos del formulario
-        payload = {
+        objecto = {
             'nombre': nombre,
             'descripcion': descripcion,
             'valor': valor,
@@ -53,7 +53,7 @@ def insert(request):
         }
 
         # Realizar una solicitud POST para crear un nuevo registro en la API
-        response = requests.post('http://127.0.0.1:8001/Api/insert/', data=payload)
+        response = requests.post('http://127.0.0.1:8001/Api/insert/', data=objecto)
         
         # Verificar el código de estado de la respuesta
         if response.status_code == 200:
@@ -94,3 +94,15 @@ def delete(request):
      else:
       return JsonResponse({'error': 'Solicitud no válida'}, status=400)
       # Si la solicitud no es POST, retornar un error
+
+
+def actualizar_gasto(request, gasto_id):
+    # Realizar una solicitud a la API para obtener los detalles del gasto
+    response = requests.get(f'http://127.0.0.1:8001/Api/detalle/{gasto_id}/')
+    if response.status_code == 200:
+        detalle_gasto = response.json()
+        # Pasar los detalles del gasto al contexto de la plantilla
+        return render(request, 'actualizar.html', {'detalle_gasto': detalle_gasto})
+    else:
+        # Manejar el caso en el que no se puedan obtener los detalles del gasto
+        return JsonResponse({'error': 'No se pudieron obtener los detalles del gasto'}, status=500)

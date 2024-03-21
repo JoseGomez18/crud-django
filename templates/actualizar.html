@@ -1,0 +1,94 @@
+{% extends "layouts/base.html" %}
+
+{% block tittle %}Actualizar{% endblock  %}
+
+{% block content %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("cerrar").addEventListener("click", function() {
+            let agregarFragment = document.getElementById("agregarFragment");
+            if (agregarFragment.style.display === "flex") {
+                agregarFragment.style.display = "none";
+            }
+        });
+
+        document.getElementById("cerrar2").addEventListener("click", function() {
+            let agregarFragment = document.getElementById("agregarFragment");
+            if (agregarFragment.style.display === "flex") {
+                agregarFragment.style.display = "none";
+            }
+        });
+
+        document.getElementById("form-insert").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evitar el envío automático del formulario
+
+            // Obtener el valor del campo de fecha
+            let fechaInput = document.getElementById("fecha").value;
+
+            // Verificar si la fecha está en un formato válido (yyyy-mm-dd)
+            let regex = /^\d{4}-\d{2}-\d{2}$/;
+            if (!regex.test(fechaInput)) {
+                
+                return; // Salir de la función si el formato de fecha no es válido
+            }
+
+            // Formatear la fecha en el formato esperado por Django (yyyy-mm-dd)
+            let fechaFormateada = fechaInput;
+
+            // Asignar el valor formateado al campo de fecha
+            document.getElementById("fecha").value = fechaFormateada;
+
+            // Enviar el formulario
+            this.submit();
+        });
+    });
+  </script>
+<body class="actualizar-body">
+    
+    <form action="" method="post" id="form-insert">
+        {% csrf_token %}
+        <div class="contenedor-agregar2" id="agregarFragment">
+            <div class="contenedor-titulo">
+                <h1 class="titulo-gasto">Actualizar gasto</h1>
+                <button class="boton-cerrar" id="cerrar">X</button>
+            </div>
+            <div class="contenedor-precio">
+                <div class= "contenedor-titulo-precio">
+                    <label class="titulo-valor">valor</label>
+                    <p>$</p>
+                    <input class="titulo-precio" type="number" min="0" step="0.01" value="{{detalle_gasto.0.valor}}" name="valor">
+                </div>
+            </div>
+            <div class="contenedor-precio2">
+                <div class="informacion-precio">
+                    <h1>Fecha</h1>
+                    <input type="date" name="fecha" id="fecha" value="{{detalle_gasto.0.fecha}}">
+                </div>
+                <div  class="informacion-precio">
+                    <h1>categoria</h1>
+                    <select name="categoria">
+                        <option value="{{detalle_gasto.0.categoria}}" selected>{{detalle_gasto.0.categoria}}</option>
+                        <option value="Otros">Otros</option>
+                        <option value="Comida"> 🍔 Comida</option>
+                        <option value="Transporte">🚗 Transporte</option>
+                        <option value="Pasatiempo">🎭 Pasatiempo</option>        
+                        <option value="Casa">🏠 Casa</option>
+                    </select>
+                </div>
+            </div>
+            <div class="contenedor-info">
+                <h1 class="titulo-info">Mas informacion</h1>
+                <input class="input-precio" type="text" name="nombre" value="{{detalle_gasto.0.nombre}}">
+                <textarea id="w3review" rows="4" cols="50" name="descripcion" >{{detalle_gasto.0.descripcion}}</textarea>
+            </div>
+            <div class="contenedor-botones-final">
+                <button class="botones-cancelar" id="cerrar2">cancelar</button>
+                <input type="submit" class="botones-añadir-gasto" value="Actualizar gasto">
+            </div>
+        </div>
+    </form>
+</body>
+
+{% endblock content %}
+

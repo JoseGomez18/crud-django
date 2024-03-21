@@ -22,6 +22,21 @@
     flex-direction: column;
 }
 
+.contenedor-agregar2 {
+    display: flex;
+    background-color: #444e5e;
+    width: 400px;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.actualizar-body {
+    background-color: #444e5e;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
 .contenedor-titulo {
     background-color: #ffffff;
     display: flex;
