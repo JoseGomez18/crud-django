@@ -1,0 +1,63 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #444e5e; /* Fondo oscuro */
+}
+
+.update-form {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco de la tarjeta */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #009688; /* Color del título */
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #444e5e; /* Color de las etiquetas */
+}
+
+.form-control {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #444e5e;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #009688; /* Color del borde al enfocar */
+}
+
+.submit-btn,
+.cancel-btn {
+    padding: 10px 20px;
+    background-color: #009688; /* Fondo de los botones */
+    color: white; /* Color del texto de los botones */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #00796b; /* Fondo del botón de enviar al pasar el ratón */
+}
+
+.cancel-btn:hover {
+    background-color: #dc3545; /* Fondo del botón de cancelar al pasar el ratón */
+}

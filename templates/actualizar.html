@@ -5,7 +5,7 @@
 {% block content %}
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("cerrar").addEventListener("click", function() {
             let agregarFragment = document.getElementById("agregarFragment");
             if (agregarFragment.style.display === "flex") {
@@ -13,13 +13,13 @@
             }
         });
 
-        document.getElementById("cerrar2").addEventListener("click", function() {
-            let agregarFragment = document.getElementById("agregarFragment");
-            if (agregarFragment.style.display === "flex") {
-                agregarFragment.style.display = "none";
-            }
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("cerrar2").addEventListener("click", function() {
+                // Redireccionar al home
+                window.location.href = "{% url 'barra' %}";
+            });
         });
-
+        
         document.getElementById("form-insert").addEventListener("submit", function(event) {
             event.preventDefault(); // Evitar el envío automático del formulario
 
@@ -44,51 +44,45 @@
         });
     });
   </script>
-<body class="actualizar-body">
-    
-    <form action="" method="post" id="form-insert">
-        {% csrf_token %}
-        <div class="contenedor-agregar2" id="agregarFragment">
-            <div class="contenedor-titulo">
-                <h1 class="titulo-gasto">Actualizar gasto</h1>
-                <button class="boton-cerrar" id="cerrar">X</button>
-            </div>
-            <div class="contenedor-precio">
-                <div class= "contenedor-titulo-precio">
-                    <label class="titulo-valor">valor</label>
-                    <p>$</p>
-                    <input class="titulo-precio" type="number" min="0" step="0.01" value="{{detalle_gasto.0.valor}}" name="valor">
+
+    <div class="container">
+        <div class="update-form">
+            <h1 class="form-title">Actualizar gasto</h1>
+            <form action="{% url 'actualizar_gasto' detalle_gasto.0.id %}" method="post" id="form-insert">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="valor" class="form-label">Valor</label>
+                    <input class="form-control" type="number" min="0" step="0.01" value="{{detalle_gasto.0.valor}}" name="valor" id="valor">
                 </div>
-            </div>
-            <div class="contenedor-precio2">
-                <div class="informacion-precio">
-                    <h1>Fecha</h1>
-                    <input type="date" name="fecha" id="fecha" value="{{detalle_gasto.0.fecha}}">
+                <div class="form-group">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" name="fecha" id="fecha" value="{{detalle_gasto.0.fecha}}" class="form-control">
                 </div>
-                <div  class="informacion-precio">
-                    <h1>categoria</h1>
-                    <select name="categoria">
+                <div class="form-group">
+                    <label for="categoria" class="form-label">Categoría</label>
+                    <select name="categoria" id="categoria" class="form-control">
                         <option value="{{detalle_gasto.0.categoria}}" selected>{{detalle_gasto.0.categoria}}</option>
                         <option value="Otros">Otros</option>
-                        <option value="Comida"> 🍔 Comida</option>
+                        <option value="Comida">🍔 Comida</option>
                         <option value="Transporte">🚗 Transporte</option>
-                        <option value="Pasatiempo">🎭 Pasatiempo</option>        
+                        <option value="Pasatiempo">🎭 Pasatiempo</option>
                         <option value="Casa">🏠 Casa</option>
                     </select>
                 </div>
-            </div>
-            <div class="contenedor-info">
-                <h1 class="titulo-info">Mas informacion</h1>
-                <input class="input-precio" type="text" name="nombre" value="{{detalle_gasto.0.nombre}}">
-                <textarea id="w3review" rows="4" cols="50" name="descripcion" >{{detalle_gasto.0.descripcion}}</textarea>
-            </div>
-            <div class="contenedor-botones-final">
-                <button class="botones-cancelar" id="cerrar2">cancelar</button>
-                <input type="submit" class="botones-añadir-gasto" value="Actualizar gasto">
-            </div>
+                <div class="form-group">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input class="form-control" type="text" name="nombre" id="nombre" value="{{detalle_gasto.0.nombre}}">
+                </div>
+                <div class="form-group">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="descripcion" rows="4" cols="50" name="descripcion">{{detalle_gasto.0.descripcion}}</textarea>
+                </div>
+                <div class="form-group">
+                    <button class="cancel-btn" id="cerrar2">Cancelar</button>
+                    <input type="submit" class="submit-btn" value="Actualizar gasto">
+                </div>
+            </form>
         </div>
-    </form>
-</body>
-
+    </div>
 {% endblock content %}
 
