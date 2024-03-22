@@ -96,9 +96,10 @@ def delete(request):
       # Si la solicitud no es POST, retornar un error
 
 
-def actualizar_gasto(request, gasto_id):
+def actualizar_gasto(request):
     if request.method == 'POST':
         # Obtener los datos del formulario
+        id = request.POST.get('id')
         nombre = request.POST.get('nombre')
         descripcion = request.POST.get('descripcion')
         valor = request.POST.get('valor')
@@ -108,16 +109,28 @@ def actualizar_gasto(request, gasto_id):
 
         # Crea un diccionario con los datos del formulario
         datos_gasto = {
+            'id': id,
             'nombre': nombre,
             'descripcion': descripcion,
             'valor': valor,
             'fecha': fechar,
             'categoria': categoria
         }
+ # Realizar una solicitud a la API para obtener los detalles del gasto
+    response = requests.post(f'http://127.0.0.1:8001/Api/update/', data= datos_gasto)
+    if response.status_code == 200:
+        # Pasar los detalles del gasto al contexto de la plantilla
+        return redirect("/")
+    else:
+        # Manejar el caso en el que no se puedan obtener los detalles del gasto
+        return JsonResponse({'error': 'No se pudo actualizar'}, status=500)
+    
 
-        # Realizar una solicitud POST para actualizar un registro en la API
-        response = requests.post('http://127.0.0.1:8001/Api/update/', data=datos_gasto)
-        
+
+
+
+
+def detalles(request, gasto_id):
    # Realizar una solicitud a la API para obtener los detalles del gasto
     response = requests.get(f'http://127.0.0.1:8001/Api/detalle/{gasto_id}/')
     if response.status_code == 200:
@@ -129,48 +142,3 @@ def actualizar_gasto(request, gasto_id):
         return JsonResponse({'error': 'No se pudieron obtener los detalles del gasto'}, status=500)
     
 
-
-
-
-#otra seccion
-
-
-
-
-# def actualizar_gasto(request, gasto_id):
-#     if request.method == 'POST':
-#         # Obtener datos del formulario
-#         nombre = request.POST.get('nombre')
-#         descripcion = request.POST.get('descripcion')
-#         valor = request.POST.get('valor')
-#         fecha = request.POST.get('fecha')
-#         categoria = request.POST.get('categoria')
-
-#         # Crear un diccionario con los datos del formulario
-#         datos_gasto = {
-#             'id': gasto_id,
-#             'nombre': nombre,
-#             'descripcion': descripcion,
-#             'valor': valor,
-#             'fecha': fecha,
-#             'categoria': categoria
-#         }
-
-#         # Enviar la solicitud POST a la API para actualizar el gasto
-#         response = requests.post('http://127.0.0.1:8001/Api/update/', data=datos_gasto)
-
-#         if response.status_code == 200:
-#             # Redirigir a alguna vista de éxito o a la página principal
-#             return redirect('/')
-#         else:
-#             # Manejar el error si la actualización falla
-#             return JsonResponse({'error': 'No se pudo actualizar el gasto en la API'}, status=500)
-
-#     else:
-#         # Si la solicitud es GET, obtener los detalles del gasto para mostrar el formulario de actualización
-#         response = requests.get(f'http://127.0.0.1:8001/Api/detalle/{gasto_id}/')
-#         if response.status_code == 200:
-#             detalle_gasto = response.json()
-#             return render(request, 'actualizar.html', {'detalle_gasto': detalle_gasto})
-#         else:
-#             return JsonResponse({'error': 'No se pudieron obtener los detalles del gasto'}, status=500)
