@@ -21,10 +21,11 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.barra, name="barra"),
-    path('select/', views.select, name="select"),
+    path('', views.login, name="login"),
+    path('home/', views.home, name='home'),
     path('actualizar_gasto/<int:gasto_id>/', views.detalles, name='actualizar_gasto'),
     path('update/', views.actualizar_gasto, name='update'),
     path('insert/', views.insert, name="insert"),
     path('delete/', views.delete, name="delete"),
+    path('logicaLo/', views.logica_login, name="logicaLo"),
 ]

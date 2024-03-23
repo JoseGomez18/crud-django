@@ -5,18 +5,21 @@
 {% block content %}
 
 <script>
+        // evento se dispara cuando el HTML del documento se ha cargado completamente
         document.addEventListener("DOMContentLoaded", function() {
+        // Agregar evento clic al botón "cerrar"
         document.getElementById("cerrar").addEventListener("click", function() {
             let agregarFragment = document.getElementById("agregarFragment");
             if (agregarFragment.style.display === "flex") {
                 agregarFragment.style.display = "none";
             }
         });
-
+        
+         // Agregar evento clic al botón "cerrar"
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("cerrar2").addEventListener("click", function() {
                 // Redireccionar al home
-                window.location.href = "{% url 'barra' %}";
+                window.location.href = "{% url 'home' %}";
             });
         });
         

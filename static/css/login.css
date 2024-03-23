@@ -62,4 +62,7 @@
     background-color: #dc3545; /* Fondo del botón de cancelar al pasar el ratón */
 }
 
-
+#login-form{
+    display: flex;
+    flex-direction: column;
+}

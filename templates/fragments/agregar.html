@@ -1,6 +1,8 @@
-{% comment %} <div class="contenedor-padre2"> {% endcomment %}
-    <script>
+
+<script>
+    // evento se dispara cuando el HTML del documento se ha cargado completamente
         document.addEventListener("DOMContentLoaded", function() {
+            // Agregar evento clic al botón "cerrar"
             document.getElementById("cerrar").addEventListener("click", function() {
                 let agregarFragment = document.getElementById("agregarFragment");
                 if (agregarFragment.style.display === "flex") {
@@ -8,6 +10,7 @@
                 }
             });
 
+            // Agregar evento clic al botón "cerrar"
             document.getElementById("cerrar2").addEventListener("click", function() {
                 let agregarFragment = document.getElementById("agregarFragment");
                 if (agregarFragment.style.display === "flex") {
@@ -39,6 +42,7 @@
             });
         });
       </script>
+
       <form action="{% url 'insert' %}" method="post" id="form-insert">
           {% csrf_token %}
           <div class="contenedor-agregar" id="agregarFragment">
@@ -49,8 +53,7 @@
               <div class="contenedor-precio">
                   <div class= "contenedor-titulo-precio">
                       <label class="titulo-valor">valor</label>
-                      <p>$</p>
-                      <input class="titulo-precio" type="number" min="0" step="0.01" value="0.00" name="valor">
+                          <input class="titulo-precio" type="number" min="0" step="0.01" value="0.00" name="valor">
                   </div>
               </div>
               <div class="contenedor-precio2">
@@ -61,7 +64,7 @@
                   <div  class="informacion-precio">
                       <h1>categoria</h1>
                       <select name="categoria">
-                          <option value="" selected>Otros</option>
+                          <option value="otros" selected>Otros</option>
                           <option value="comida">🍔 Comida</option>
                           <option value="transporte">🚗 Transporte</option>
                           <option value="pasatiempo">🎭 Pasatiempo</option>        
@@ -80,5 +83,4 @@
               </div>
           </div>
       </form>
-
 </div>
