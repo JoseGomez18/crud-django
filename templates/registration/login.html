@@ -1,16 +1,20 @@
 {% extends "layouts/base.html" %}
 
-{% block tittle %}Login{% endblock  %}
-
+{% block tittle %}Actualizar{% endblock  %}
+ 
 {% block content %}
+
+
 <body class="login">
     <div class="container">
         <div class="update-form">
             <h2 class="form-title">Iniciar sesión</h2>
-            <form id="login-form" method="post" action="{% url 'logicaLo' %}">
+            <form id="login-form" method="post" action="">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
                 <div class="form-group">
-                    <label class="form-label" for="email">Correo electrónico:</label>
-                    <input class="form-control" type="email" id="email" name="email" required>
+                    <label class="form-label" for="email">Usuario:</label>
+                    <input class="form-control" type="text" id="email" name="username" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="password">Contraseña:</label>
@@ -21,4 +25,5 @@
         </div>
     </div>
 </body>
-{% endblock content %}
+
+{% endblock  %}

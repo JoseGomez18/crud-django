@@ -44,13 +44,12 @@
 <div class="contenedor_padre">
     <div class="nav">
         <h1>PersonalMoney</h1>
-        {% comment %} <div class="cuenta">
+       <div class="cuenta">
             <img src="icono" alt="">
             <div class="correo">
-                <h3>Santiago Madrid</h3>
-                <p>Santiagomadrid202...</p>
+                <a href="{% url 'logout' %}"><button>Cerrar sesion</button></a>
             </div>
-        </div>         {% endcomment %}
+        </div>         
     </div>
 
     <div class="nav_gastos">

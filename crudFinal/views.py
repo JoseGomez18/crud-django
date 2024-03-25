@@ -2,7 +2,10 @@ import requests
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
+@login_required
 def home(request):
     # Realiza una solicitud GET para obtener los datos de la API
     response = requests.get('http://127.0.0.1:8001/Api/select/')
@@ -15,7 +18,7 @@ def home(request):
     else:
         # La solicitud no fue exitosa, manejar el error
         return JsonResponse({'error': 'No se pudo obtener los datos de la API'}, status=500)
-    
+
 def insert(request):
      if request.method == 'POST':
         # Obtener los datos del formulario
@@ -123,32 +126,63 @@ def detalles(request, gasto_id):
         return JsonResponse({'error': 'No se pudieron obtener los detalles del gasto'}, status=500)
     
 
-def login(request):
-    return render(request,'login.html')
 
 def logica_login(request):
-     if request.method == 'POST':
-        # Obtener los datos del formulario
+    if request.method == 'POST':
         correo = request.POST.get('email')
         contra = request.POST.get('password')
-        
 
-        # Crea un objeto con los datos del formulario
-        objecto = {
-            'correo': correo,
-            'contra': contra
-        }
-
-        # Realizar una solicitud POST para crear un nuevo registro en la API
-        response = requests.post('http://127.0.0.1:8001/Api//', data=objecto)
+        # Verificar si las credenciales coinciden con las del usuario administrador
+        if correo == "admin@gmail.com" and contra == "money19":
+            # Autenticar al usuario administrador
+            # Aquí puedes agregar la lógica de autenticación si es necesario en tu aplicación
+            print("funciono")
+            print(correo)
+            
+            # Redirigir al usuario a la página que intentaba acceder antes de iniciar sesión, o al home si no hay ninguna página de origen
+            next_page = request.GET.get('next', None)
+            if next_page:
+                return redirect(next_page)
+            else:
+                return redirect("home")
+            
+        else:   
+            print("no funciono") 
+            # Credenciales inválidas
+            return render(request, 'login.html', {'error': 'Credenciales inválidas'})
         
-        # Verificar el código de estado de la respuesta
-        if response.status_code == 200:
-            # La creación fue exitosa
-            return redirect('/')
-        else:
-            # La creación no fue exitosa, manejar el error
-            return JsonResponse({'error': 'No se pudo crear el registro en la API'}, status=500)
-     else:
-      # Si la solicitud no es POST, retornar un error
-      return JsonResponse({'error': 'Solicitud no válida'}, status=400)
+    
+    # Si el método de solicitud no es POST, o si las credenciales no son válidas, mostrar la página de inicio de sesión
+    return render(request, 'login.html')
+
+def cerrar(request):
+    logout(request)
+    return redirect('/')
+
+# def logica_login(request):
+#     if request.method == 'POST':
+#         correo = request.POST.get('email')
+#         contra = request.POST.get('password')
+
+#         # Verificar si las credenciales coinciden con las del usuario administrador
+#         if correo == "admin@gmail.com" and contra == "money19":
+#             # Autenticar al usuario administrador
+#             # Aquí puedes agregar la lógica de autenticación si es necesario en tu aplicación
+#             print("funciono")
+#             print(correo)
+            
+#             # Redirigir al usuario a la página que intentaba acceder antes de iniciar sesión, o al home si no hay ninguna página de origen
+#             next_page = request.GET.get('next', None)
+#             if next_page:
+#                 return redirect(next_page)
+#             else:
+#                 return redirect("home")
+            
+#         else:   
+#             print("no funciono") 
+#             # Credenciales inválidas
+#             return render(request, 'login.html', {'error': 'Credenciales inválidas'})
+        
+    
+#     # Si el método de solicitud no es POST, o si las credenciales no son válidas, mostrar la página de inicio de sesión
+#     return render(request, 'login.html')
